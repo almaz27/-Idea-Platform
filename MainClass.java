@@ -39,7 +39,7 @@ public class MainClass {
         for(double price: prices){
             sum += price;
         }
-        return median - (sum/prices.length);
+        return (sum/prices.length)-median;
     }
 
     public static String printTime(Duration d){
@@ -57,43 +57,4 @@ public class MainClass {
 
 }
 
-    /*public static ArrayList<Ticket> ticketPool(String dep, String arrival) throws IOException {
-        List<Ticket> ticketList = new ArrayList<>();
-        String content = new String(Files.readAllBytes(Paths.get("/Users/almaz1991/Documents/SPRING PROJECTS/Olga/src/main/java/org/example/tickets.json")));
-        JsonObject jsonObject = new JsonParser().parseString(content).getAsJsonObject();
-        JsonArray arr = jsonObject.getAsJsonArray("tickets");
-        //Собираем из жсон обьекта нужных нам направления List<Ticket> ticketList
-        for (var ticket:arr){
-            JsonObject job = ticket.getAsJsonObject();
-            if (Objects.equals(job.get("origin_name").getAsString(), dep) && Objects.equals(job.get("destination_name").getAsString(), arrival)){
-                Ticket newTicket = new Ticket(job.get("origin").getAsString(),
-                        job.get("origin_name").getAsString(),
-                        job.get("destination").getAsString(),
-                        job.get("destination_name").getAsString(),
-                        job.get("departure_date").getAsString(),
-                        job.get("departure_time").getAsString(),
-                        job.get("arrival_date").getAsString(),
-                        job.get("arrival_time").getAsString(),
-                        job.get("carrier").getAsString(),
-                        job.get("stops").getAsInt(),
-                        job.get("price").getAsDouble());
-                ticketList.add(newTicket);
-            }
-        }
-        return (ArrayList<Ticket>) ticketList;
-    }*/
-
-
-
-
-
-        /* Теперь давайте рассчитаем минимальное время полета и разницу между средней ценой и медианой.*/
-
-
-
-
-   /* В этом коде мы сначала формируем две карты: одну для минимального времени полета для каждого авиаперевозчика и вторую для цен билетов для каждого авиаперевозчика. Затем мы вычисляем медиану и среднее значение цен билетов для каждого авиаперевозчика и выводим разницу между ними.
-
-        Этот код обрабатывает только билеты между Владивостоком и Тель-Авивом. Если вам нужно обрабатывать билеты между другими городами, вы можете легко изменить этот код, заменив названия городов.
-
-        Обратите внимание: Это решение предполагает, что в файле JSON содержатся все необходимые данные и они корректны. В реальном проекте вам, вер*/
+    
