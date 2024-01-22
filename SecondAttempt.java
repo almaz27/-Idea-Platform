@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class SecondAttempt {
     public static void main(String[] args) throws IOException {
@@ -22,8 +23,14 @@ public class SecondAttempt {
         }
 
         for (Map.Entry<String, Duration> entry : carrier_min_duration.entrySet()) {
-            System.out.println("Перевозчик: "+entry.getKey() + ": " + " минимальное время полета между городами Владивосток и Тель-Авив "+printTime(entry.getValue()));
+            System.out.println("Перевозчик: "+entry.getKey() + ":" + " минимальное время полета между городами Владивосток и Тель-Авив "+printTime(entry.getValue()));
         }
+
+        List<Double> sorted = ticketList.stream().map(Ticket::getPrice).sorted().toList();
+        double result = getSubtractOfAvgMed(sorted);
+        System.out.println("Разницу между средней ценой  и медианой для полета между городами Владивосток и Тель-Авив "+result);
+
+
 
     }
     public static String printTime(Duration d){
@@ -31,5 +38,16 @@ public class SecondAttempt {
             return d.toHours()+":"+d.minusHours(d.toHours()).toMinutes();
         }
         return d.toDays()+"days"+d.minusDays(d.toDays()).toHours()+":"+d.minusHours(d.minusDays(d.toDays()).toHours()).toMinutes();
+    }
+    public static double getSubtractOfAvgMed(List<Double> sorted){
+        double avgPrice = sorted.stream().reduce((double) 0,(subtotal, element)->subtotal+element)/sorted.size();
+        double medianPrice;
+
+        if(sorted.size() % 2 == 0){
+            medianPrice = (double) (sorted.get(sorted.size()/2)+sorted.get(sorted.size()/2-1))/2;
+        } else {
+            medianPrice = sorted.get((sorted.size()-1)/2);
+        }
+        return avgPrice-medianPrice;
     }
 }
