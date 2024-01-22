@@ -17,8 +17,5 @@ public interface ticketMaker {
     public ArrayList<Ticket> ticketPool(String dep, String arrival) throws IOException;
 
 
-//    public String  findZoneId(String city);
-//    public String translatedCity(String city);
-
 
 }
